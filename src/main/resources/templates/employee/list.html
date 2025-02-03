@@ -51,8 +51,7 @@
                 src="../../static/img/header_logo_small.png"
                 th:src="@{/img/header_logo_small.png}"
               />
-            </a>
-            <!-- 下記追記 -->
+            </a>             
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -90,7 +89,8 @@
           <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>
         </li>
       </ol>
-
+      <!-- 追記 -->
+      名前：<input type="text" name="search" th:value="${search}"><button>検索</button>
       <!-- table -->
       <div class="row">
         <div

@@ -57,6 +57,10 @@ public class EmployeeRepository {
 		return developmentList;
 	}
 
+	//下記にコードを追記
+
+
+
 	/**
 	 * 主キーから従業員情報を取得します.
 	 * 
