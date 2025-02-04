@@ -74,6 +74,7 @@ public class AdministratorController {
 	 * @param form 管理者情報用フォーム
 	 * @return ログイン画面へリダイレクト
 	 */
+
 	//問3追記②
 	@ModelAttribute
 	public InsertAdministratorForm setUpForm(){
@@ -83,11 +84,15 @@ public class AdministratorController {
 	@PostMapping("/insert")
 	public String insert(
 		@Validated InsertAdministratorForm form,BindingResult result,RedirectAttributes redirectAttributes,Model model
-	) {
+	) 
+	{
+		//問3重複チェック追記
+		if(administratorService.isEmailDuplicate(form.getMailAddress())){
+			result.rejectValue("mailAdress","error.mailAddress" ,"メールアドレスが重複しています");
+		}
 	if(result.hasErrors()){
 		return "administrator/insert";
 	}
-		 
 		Administrator administrator = new Administrator();
 		// フォームからドメインにプロパティ値をコピー
 		BeanUtils.copyProperties(form, administrator);
