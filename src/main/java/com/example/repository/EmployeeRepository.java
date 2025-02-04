@@ -49,14 +49,30 @@ public class EmployeeRepository {
 	 * 
 	 * @return 全従業員一覧 従業員が存在しない場合はサイズ0件の従業員一覧を返します
 	 */
+	//Employeeテーブルに格納された従業員情報を取得
+	//このメソッドは実行したSQLクエリの結果をEmployeeオブジェクトの結果として返す。
+
 	public List<Employee> findAll() {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees";
 
 		List<Employee> developmentList = template.query(sql, EMPLOYEE_ROW_MAPPER);
-
 		return developmentList;
 	}
 
+<<<<<<< Updated upstream
+=======
+	//問2追記①名前欄に入力された名前でemployeesテーブルをあいまい検索
+	public List<Employee> findByName(String name){
+		//データベースに対して実行するsqlクエリ
+		//置き換えたい(動的に変えたい)ところをコロンで置き換える。
+		String sql = "select * from employees where name like :name";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%"+name+"%");
+		//%注意
+		return template.query(sql,param, EMPLOYEE_ROW_MAPPER);
+		//検索依頼(sqlとparamをqueryの中で検索して返してね)
+	}
+
+>>>>>>> Stashed changes
 	/**
 	 * 主キーから従業員情報を取得します.
 	 * 

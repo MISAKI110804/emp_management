@@ -90,8 +90,17 @@
           <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>
         </li>
       </ol>
+<<<<<<< Updated upstream
 
+=======
+      <!-- 問2追記 -->
+       <!-- form忘れないで -->
+       <form th:action="@{/employee/showList}">
+      名前：<input type="text" name="name" th:value="${name}"><button>検索</button>
+    </form>
+>>>>>>> Stashed changes
       <!-- table -->
+
       <div class="row">
         <div
           class="table-responsive col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12"

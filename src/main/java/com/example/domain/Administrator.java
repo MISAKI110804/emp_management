@@ -37,12 +37,6 @@ public class Administrator {
 		this.password = password;
 	}
 
-	
-
-	public Administrator(String mailAddress) {
-		this.mailAddress = mailAddress;
-	}
-
 	public Integer getId() {
 		return id;
 	}
