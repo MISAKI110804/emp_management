@@ -51,7 +51,7 @@
                 src="../../static/img/header_logo_small.png"
                 th:src="@{/img/header_logo_small.png}"
               />
-            </a>
+            </a>             
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,7 +67,8 @@
               </li>
             </ul>
             <p class="navbar-text navbar-right">
-              <span th:text="${administratorName}">山田太郎</span
+              <!-- 追記 -->
+              <span th:text="${session.name}">山田太郎</span
               >さんこんにちは！ &nbsp;&nbsp;&nbsp;
               <a
                 href="../administrator/login.html"
@@ -88,7 +89,8 @@
           <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>
         </li>
       </ol>
-
+      <!-- 追記 -->
+      名前：<input type="text" name="search" th:value="${search}"><button>検索</button>
       <!-- table -->
       <div class="row">
         <div

@@ -3,6 +3,8 @@ package com.example.controller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import com.example.form.InsertAdministratorForm;
 import com.example.form.LoginForm;
 import com.example.service.AdministratorService;
 
+import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -71,8 +74,20 @@ public class AdministratorController {
 	 * @param form 管理者情報用フォーム
 	 * @return ログイン画面へリダイレクト
 	 */
+	//問3追記②
+	@ModelAttribute
+	public InsertAdministratorForm setUpForm(){
+		return new InsertAdministratorForm();
+	}
+	//問3追記③
 	@PostMapping("/insert")
-	public String insert(InsertAdministratorForm form) {
+	public String insert(
+		@Validated InsertAdministratorForm form,BindingResult result,RedirectAttributes redirectAttributes,Model model
+	) {
+	if(result.hasErrors()){
+		return "administrator/insert";
+	}
+		 
 		Administrator administrator = new Administrator();
 		// フォームからドメインにプロパティ値をコピー
 		BeanUtils.copyProperties(form, administrator);
@@ -106,8 +121,13 @@ public class AdministratorController {
 			redirectAttributes.addFlashAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return "redirect:/";
 		}
+		session.setAttribute("name", administrator.getName());
+		
+		// session.setAttribute("administrator", administrator);
+
 		return "redirect:/employee/showList";
 	}
+
 
 	/////////////////////////////////////////////////////
 	// ユースケース：ログアウトをする

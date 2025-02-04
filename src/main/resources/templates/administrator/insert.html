@@ -57,6 +57,8 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <label for="name"> 氏名: </label>
+                      <!-- 追記名前入力値チェック -->
+                      <!-- <div th:errors = "*{name}" style="color: red;">エラー!</div> -->
                       <label
                         th:errors="*{name}"
                         class="error-messages"
@@ -81,6 +83,8 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <label for="mailAddress"> メールアドレス: </label>
+                      <!-- 追記メールアドレスチェック -->
+                      <!-- <div th:errors = "*{mailAddress}" style="color: red;">エラー!</div> -->
                       <label
                         th:errors="*{mailAddress}"
                         class="error-messages"
@@ -105,6 +109,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <label for="password"> パスワード: </label>
+                      <!-- <div th:errors = "*{password}" style="color: red;">エラー!</div> -->
                       <label
                         th:errors="*{password}"
                         class="error-messages"
