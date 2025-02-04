@@ -20,6 +20,7 @@ public class InsertAdministratorForm {
 	/** メールアドレス */
 	@Email(message = "メールアドレスの形式が不正です")
 	@Size(min=1,max =100, message = "メールアドレスは100文字以内で入力してください")
+	
 	private String mailAddress;
 	/** パスワード */
 	@NotBlank(message = "パスワードは必須です")

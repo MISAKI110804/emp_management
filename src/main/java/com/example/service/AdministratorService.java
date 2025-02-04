@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.controller.AdministratorController;
 import com.example.domain.Administrator;
 import com.example.repository.AdministratorRepository;
 
@@ -19,6 +20,7 @@ public class AdministratorService {
 
 	@Autowired
 	private AdministratorRepository administratorRepository;
+
 
 	/**
 	 * 管理者情報を登録します.
@@ -39,5 +41,13 @@ public class AdministratorService {
 	public Administrator login(String mailAddress, String password) {
 		Administrator administrator = administratorRepository.findByMailAddressAndPassward(mailAddress, password);
 		return administrator;
+	}
+	//問3重複チェック
+	public boolean isEmailDuplicate(String mailAddress){
+		Administrator existingAdmin = administratorRepository.findByMailAddress(mailAddress);
+		if(existingAdmin == null){
+			return false;
+		}
+		return true;
 	}
 }
