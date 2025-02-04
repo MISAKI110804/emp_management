@@ -48,11 +48,22 @@ public class EmployeeController {
 	 * @param model モデル
 	 * @return 従業員一覧画面
 	 */
+	// 問2下記コードに追記
+	// ②-1.①で該当するレコードがある場合検索結果をリクエストスコープにセット（ない場合は何もしない）
 	@GetMapping("/showList")
-	public String showList(Model model) {
-		List<Employee> employeeList = employeeService.showList();
-		model.addAttribute("employeeList", employeeList);
-		return "employee/list";
+	// 検索ボックスでname属性につけたnameが入ってくる
+	public String showList(Model model, String name) {
+		if (name == null) {
+			//全ての従業員を表示するために、showList()メソッドが呼ばれる
+			List<Employee> employeeList = employeeService.showList();
+			// employeeListという名前でビューに渡す
+			model.addAttribute("employeeList", employeeList);
+			return "employee/list";
+		} else {
+			List<Employee> employeeList = employeeService.findByName(name);
+			model.addAttribute("employeeList", employeeList);
+			return "employee/list";
+		}
 	}
 
 	/////////////////////////////////////////////////////
@@ -93,3 +104,5 @@ public class EmployeeController {
 		return "redirect:/employee/showList";
 	}
 }
+// コントローラークラス（HTTPリクエストの処理）
+// 検索ボックスからのリクエストを受け取り、

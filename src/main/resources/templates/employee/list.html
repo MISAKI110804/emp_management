@@ -52,6 +52,7 @@
                 th:src="@{/img/header_logo_small.png}"
               />
             </a>
+            <!-- 下記追記 -->
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,7 +68,8 @@
               </li>
             </ul>
             <p class="navbar-text navbar-right">
-              <span th:text="${administratorName}">山田太郎</span
+              <!-- 追記 -->
+              <span th:text="${session.name}">山田太郎</span
               >さんこんにちは！ &nbsp;&nbsp;&nbsp;
               <a
                 href="../administrator/login.html"
@@ -88,8 +90,17 @@
           <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>
         </li>
       </ol>
+<<<<<<< Updated upstream
 
+=======
+      <!-- 問2追記 -->
+       <!-- form忘れないで -->
+       <form th:action="@{/employee/showList}">
+      名前：<input type="text" name="name" th:value="${name}"><button>検索</button>
+    </form>
+>>>>>>> Stashed changes
       <!-- table -->
+
       <div class="row">
         <div
           class="table-responsive col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12"
